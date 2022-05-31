@@ -1,3 +1,4 @@
+/*
 #include "../includes/libft.h"
 
 void ft_putnbr_base(int nbr, char *base)
@@ -23,6 +24,4 @@ void ft_putnbr_base(int nbr, char *base)
 		ft_putchar(n % 10 + '0');
 	}
 }
-
-
-}
+*/
