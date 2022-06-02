@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-void	ft_putnbr(int n)
+void	ft_putnbr(int n, int arg_len)
 {
 	if (n == INT_MIN)
 	{

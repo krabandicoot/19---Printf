@@ -14,17 +14,21 @@ void print_u_int(va_list arg, int *arg_len)
 	char n;
 
 	n = ()
-}
-
-void print_hexa(va_list arg, int *arg_len)
-{
-
 }*/
+
+void print_int(va_list arg, int *arg_len)
+{
+	unsigned int n;
+
+	n = va_arg(arg, unsigned int);
+	
+}
 
 void print_putchar(va_list arg, int *arg_len)
 {
-	char n;
+	char c;
 
-	n = va_arg(arg, int);
-	*arg_len += write(1, &n, 1); 
+	c = va_arg(arg, int);
+	write(1, &c, 1);
+	arg_len++;
 }

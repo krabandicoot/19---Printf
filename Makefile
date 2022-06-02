@@ -1,5 +1,5 @@
-SRCS		=	ft_print.c \
-				srcs/*.c \
+SRCS		=	srcs/*.c \
+				ft_printf.c \
 
 NAME		=	libftprintf.a
 OBJS		=	*.o
@@ -7,11 +7,10 @@ OPTIONS		=	-c -I
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra 
 
-OBJS:		
-			${CC} ${CFLAGS} ${OPTIONS} ${SRCS}
-
 ${NAME}:	${OBJS}
-			ar -rcs $@ $^
+			ar -crs ${NAME} ${OBJS}
+${OBJS}:
+			${CC} ${CFLAGS} ${OPTIONS} ${SRCS}
 
 all:		${NAME}
 
@@ -21,7 +20,6 @@ clean:
 fclean:		clean
 			rm -f ${NAME}
 
-re:			fclean
-			${MAKE}
+re:			fclean all
 
 .PHONY:		all bonus clean fclean re

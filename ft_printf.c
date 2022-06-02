@@ -1,13 +1,17 @@
 #include "includes/printf.h"
+#include "includes/libft.h"
 
 void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 {
 	if (str[i] == 'c')
-		*arg_len += print_putchar(str, arg);
+		print_putchar(arg, arg_len);
 	if (str[i] == '%')
-		*arg_len += print_putchar("%");
+	{
+		write(1, "%", 1);
+		arg_len++;
+	}
 	if (str[i] == 'd' || str[i] == 'i') //what's the difference ?? 
-		return ;//function for int
+		print_int(arg, arg_len);
 	if (str[i] == 'u')
 		return ;//arg_len += print_u_int() 
 	if (str[i] == 'x' || str[i] == 'X')
@@ -25,20 +29,30 @@ int ft_printf(const char *conversion, ...)
 	int		*arg_len;
 	va_list	arg;
 
-
+	i = 0;
+	len = 0;
+	arg_len = NULL;
 	if(!conversion)
 		return (0);
 	va_start (arg, conversion);
 	while (conversion[i])
-		if(conversion == "%")
+	{
+		if(conversion[i] == '%')
 		{
-			check_conversion(conversion, arg, i, arg_len);
 			i++;
+			check_conversion(conversion, arg, i, arg_len);
 		}
 		else
-			len += print_putchar(conversion);
+			len += write(1, &conversion[i], 1);
 		i++;
+	}
 	va_end(arg);
 	return(len);
+}
 
+#include <stdio.h>
+
+int main()
+{
+	ft_printf("This sis my percent : %d", 45);
 }
