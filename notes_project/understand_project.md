@@ -17,7 +17,7 @@
 **____Fields_____**
 - %c = the int argument is a character converted to an unsigned char; (simple write)
 - %s = null-terminated string 
-- %p =  void* (pointer to void) in an implementation-defined format.
+- %p =  Display the argument as an address in hexadecimal digits.
 - %d && %i = int as a signed integer. %d and %i are synonymous for output, but are different when used with scanf for input (where using %i will interpret a number as hexadecimal if it's preceded by 0x, and octal if it's preceded by 0.) 
 - %u = Print decimal unsigned int.
 - %x && %X = unsigned int as a hexadecimal number. x uses lower-case letters and X uses upper-case.

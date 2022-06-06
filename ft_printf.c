@@ -10,12 +10,12 @@ void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 		write(1, "%", 1);
 		arg_len++;
 	}
-	if (str[i] == 'd' || str[i] == 'i') //what's the difference ?? 
+	if (str[i] == 'd' || str[i] == 'i') 
 		print_int(arg, arg_len);
 	if (str[i] == 'u')
-		return ;//arg_len += print_u_int() 
+		print_uint(arg, arg_len);
 	if (str[i] == 'x' || str[i] == 'X')
-		return ;//arg_len += print_hexa();
+		print_uint(arg, arg_len, str);
 	if (str[i] == 'p')
 		return ;//function ptr
 	if (str[i] == 's')

@@ -12,23 +12,23 @@
 
 #include "../includes/libft.h"
 
-void	ft_putnbr(int n, int arg_len)
+void	ft_putnbr(int n, int *arg_len)
 {
 	if (n == INT_MIN)
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr(n / 10, arg_len);
 		ft_putchar('8');
 	}
 	else if (n < 0)
 	{
 		ft_putchar('-');
-		ft_putnbr(-n);
+		ft_putnbr(-n, arg_len);
 	}
 	else
 	{	
 		if (n > 9)
 		{
-			ft_putnbr(n / 10);
+			ft_putnbr(n / 10, arg_len);
 		}
 		ft_putchar(n % 10 + '0');
 	}
