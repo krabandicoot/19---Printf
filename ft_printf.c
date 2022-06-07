@@ -1,5 +1,4 @@
-#include "includes/printf.h"
-#include "includes/libft.h"
+#include "includes/ft_printf.h"
 
 void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 {
@@ -13,13 +12,13 @@ void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 	if (str[i] == 'd' || str[i] == 'i') 
 		print_int(arg, arg_len);
 	if (str[i] == 'u')
-		print_uint(arg, arg_len);
+		print_u_int(arg, arg_len);
 	if (str[i] == 'x' || str[i] == 'X')
-		print_uint(arg, arg_len, str);
+		print_base(arg, arg_len, str);
 	if (str[i] == 'p')
-		return ;//function ptr
+		print_ptr(arg, arg_len);
 	if (str[i] == 's')
-		return ;//function str
+		print_str(arg, arg_len);
 }
 
 int ft_printf(const char *conversion, ...)
@@ -54,5 +53,6 @@ int ft_printf(const char *conversion, ...)
 
 int main()
 {
-	ft_printf("This sis my percent : %d", 45);
+	ft_printf(" %% \n");
+	printf(" %% \n");
 }

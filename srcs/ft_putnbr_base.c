@@ -1,4 +1,4 @@
-#include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
 static int	check_base(char *base)
 {
@@ -16,41 +16,15 @@ static int	check_base(char *base)
 			return (0);
 		if (base[i] < 32 || base[i] > 126)
 			return (0);
-		while (base[z])
+		while (base[j])
 		{
-			if (base[i] == base [z])
+			if (base[i] == base [j])
 				return(0);
-			z++;
+			j++;
 		}
 		i++;
 	}
 	return(1);
-}
-
-void ft_putnbr_base(int n, char *base, int *arg_len)
-{
-	unsigned int	nb;
-	int				base_len;
-
-	if (check_base(base))
-	{
-		base_len = 0;
-		while (base[base_len])
-			base_len++;
-		if (n < 0)
-		{
-			ft_putchar('-';
-			nb = -n;
-		}
-		else
-			nb = n;
-		if (nb > 9)
-		{
-			ft_putnbr(nb / base_len, base, len);
-			nb %= base_len;
-		}
-		ft_putchar(base[nb]);
-	}
 }
 
 void ft_putnbr_base_ul(unsigned long n, char *base, int *arg_len)
@@ -67,6 +41,32 @@ void ft_putnbr_base_ul(unsigned long n, char *base, int *arg_len)
 			ft_putnbr_base_ul(n / base_len, base, arg_len);
 			n %= base_len;
 		}
-		ft_putchar(base[n]);
+		ft_putchar(base[n], arg_len);
+	}
+}
+
+void ft_putnbr_base(int n, char *base, int *arg_len)
+{
+	unsigned int	nb;
+	int				base_len;
+
+	if (check_base(base))
+	{
+		base_len = 0;
+		while (base[base_len])
+			base_len++;
+		if (n < 0)
+		{
+			ft_putchar('-', arg_len);
+			nb = -n;
+		}
+		else
+			nb = n;
+		if (nb > 9)
+		{
+			ft_putnbr_base(nb/base_len, base, arg_len);
+			nb %= base_len;
+		}
+		ft_putchar(base[nb], arg_len);
 	}
 }

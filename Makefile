@@ -1,4 +1,5 @@
-SRCS		=	srcs/*.c \
+SRCS		=	srcs/ft_putchar.c \
+				srcs/*.c \
 				ft_printf.c \
 
 NAME		=	libftprintf.a
@@ -9,6 +10,7 @@ CFLAGS		=	-Wall -Werror -Wextra
 
 ${NAME}:	${OBJS}
 			ar -crs ${NAME} ${OBJS}
+
 ${OBJS}:
 			${CC} ${CFLAGS} ${OPTIONS} ${SRCS}
 

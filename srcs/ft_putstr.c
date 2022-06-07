@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
-void	ft_putstr(char *s)
+void	ft_putstr(char *s, int *arg_len)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ void	ft_putstr(char *s)
 		return ;
 	while (s[i])
 	{
-		ft_putchar(s[i]);
+		ft_putchar(s[i], arg_len);
 		i++;
 	}
 }
