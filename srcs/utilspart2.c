@@ -2,10 +2,13 @@
 
 void print_str(va_list arg, int *arg_len)
 {
-	char n; 
+	char	*n;
 
-	n = va_arg(arg, int);
-	arg_len += ft_strlen(&n);
+	n = va_arg(arg, void*);
+	if(!n)
+		ft_putstr("(null)", arg_len);
+	else
+		ft_putstr(n, arg_len);
 }
 
 void print_ptr(va_list arg, int *arg_len)

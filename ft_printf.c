@@ -1,23 +1,32 @@
 #include "includes/ft_printf.h"
 
+int	check_exist(char c, char *conversion)
+{
+	while(*conversion)
+	{
+		if (c == *conversion)
+			return (1);
+		conversion++;
+	}
+	return (0);
+
+}
+
 void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 {
-	if (str[i] == 'c')
-		print_putchar(arg, arg_len);
 	if (str[i] == '%')
-	{
-		write(1, "%", 1);
-		arg_len++;
-	}
-	if (str[i] == 'd' || str[i] == 'i') 
+		*arg_len += write(1, "%", 1);
+	else if (str[i] == 'c')
+		print_putchar(arg, arg_len);
+	else if (str[i] == 'd' || str[i] == 'i') 
 		print_int(arg, arg_len);
-	if (str[i] == 'u')
+	else if (str[i] == 'u')
 		print_u_int(arg, arg_len);
-	if (str[i] == 'x' || str[i] == 'X')
+	else if (str[i] == 'x' || str[i] == 'X')
 		print_base(arg, arg_len, str);
-	if (str[i] == 'p')
+	else if (str[i] == 'p')
 		print_ptr(arg, arg_len);
-	if (str[i] == 's')
+	else if (str[i] == 's')
 		print_str(arg, arg_len);
 }
 
@@ -28,18 +37,23 @@ int ft_printf(const char *conversion, ...)
 	int		*arg_len;
 	va_list	arg;
 
+	va_start (arg, conversion);
 	i = 0;
 	len = 0;
-	arg_len = NULL;
+	arg_len = &len;
 	if(!conversion)
 		return (0);
-	va_start (arg, conversion);
 	while (conversion[i])
 	{
-		if(conversion[i] == '%')
+		if(conversion[i] == '%' && check_exist(conversion[i + 1],"cspdiuxX%"))
 		{
-			i++;
 			check_conversion(conversion, arg, i, arg_len);
+			i++;
+		}
+		else if (conversion[i] == '%' && !(check_exist(conversion[i + 1],"cspdiuxX%")))
+		{
+			len += write(1, &conversion[i + 1], 1);
+			i++;
 		}
 		else
 			len += write(1, &conversion[i], 1);
@@ -47,12 +61,4 @@ int ft_printf(const char *conversion, ...)
 	}
 	va_end(arg);
 	return(len);
-}
-
-#include <stdio.h>
-
-int main()
-{
-	ft_printf(" %% \n");
-	printf(" %% \n");
 }
