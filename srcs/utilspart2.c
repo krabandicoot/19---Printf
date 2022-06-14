@@ -5,7 +5,7 @@ void print_str(va_list arg, int *arg_len)
 	char	*n;
 
 	n = va_arg(arg, void*);
-	if(!n)
+	if(n == NULL)
 		ft_putstr("(null)", arg_len);
 	else
 		ft_putstr(n, arg_len);

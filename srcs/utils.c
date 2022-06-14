@@ -22,8 +22,7 @@ void print_putchar(va_list arg, int *arg_len)
 	char c;
 
 	c = va_arg(arg, int);
-	write(1, &c, 1);
-	arg_len++;
+	*arg_len += write(1, &c, 1);
 }
 
 void print_base(va_list arg, int *arg_len, const char *str)

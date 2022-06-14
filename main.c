@@ -1,6 +1,6 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
-#define PARAMS1	"| %s |\n", "oui"
+#define PARAMS1	"| %d |\n", 45
 /*#define PARAMS2 "| %%%% |\n"
 #define PARAMS3 "| %% %% %% |\n"
 #define PARAMS4 "| %%  %%  %% |\n|"
