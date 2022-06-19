@@ -1,6 +1,8 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
-#define PARAMS1	"| %d |\n", -1
+#include <limits.h>
+
+#define PARAMS1	"| %d |\n", INT_MIN
 /*#define PARAMS2 "| %%%% |\n"
 ç "| %% %% %% |\n"
 #define PARAMS4 "| %%  %%  %% |\n|"

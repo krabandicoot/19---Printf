@@ -11,7 +11,7 @@ void ft_putnbr_base(int n, const char *base, int *arg_len)
 	nb = n;
 	while (base[base_len])
 		base_len++;
-	if (n == -n && n < 0)
+	if (n == sign && n < 0)
 	{
 		ft_putchar('-', arg_len);
 		nb = -n;
@@ -20,6 +20,8 @@ void ft_putnbr_base(int n, const char *base, int *arg_len)
 		ft_putnbr_base(nb / base_len, base, arg_len);
 	ft_putchar(base[nb % base_len], arg_len);
 }
+
+
 
 void ft_putnbr_base_ul(unsigned long nb, const char *base, int *arg_len)
 {
