@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define PARAMS1	"| %d |\n", INT_MIN
+#define PARAMS1	"| %d |\n", -1
 /*#define PARAMS2 "| %%%% |\n"
 ç "| %% %% %% |\n"
 #define PARAMS4 "| %%  %%  %% |\n|"
@@ -10,18 +10,14 @@
 #define PARAMS6 "|%%|"*/
 int main()
 {
-	int a;
-	int b;
-
-	printf("ft_printf :\n");
-	a = ft_printf(PARAMS1);
-	ft_printf("%i\nprintf :\n", a);
-	b = printf(PARAMS1);
-	printf("%i\n", b);
+	printf("ft_printf: \n");
+	ft_printf("%i\n", printf(PARAMS1));
+	printf("printf: \n");
+	printf("%i\n", printf(PARAMS1));
 }
 
 
-// TEST(1, print(" %u ", 0));
+// // TEST(1, print(" %u ", 0));
 // 	TEST(2, print(" %u ", -1));
 // 	TEST(3, print(" %u ", 1));
 // 	TEST(4, print(" %u ", 9));
