@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpaux <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/20 15:24:47 by kpaux             #+#    #+#             */
+/*   Updated: 2022/06/20 15:34:15 by kpaux            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
-int	check_exist(char c, char *conversion)
+int	if_exist(char c, char *letter)
 {
-	while(*conversion)
+	while (*letter)
 	{
-		if (c == *conversion)
+		if (c == *letter)
 			return (1);
-		conversion++;
+		letter++;
 	}
 	return (0);
-
 }
 
 void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
@@ -18,7 +29,7 @@ void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 		*arg_len += write(1, "%", 1);
 	else if (str[i] == 'c')
 		print_putchar(arg, arg_len);
-	else if (str[i] == 'd' || str[i] == 'i') 
+	else if (str[i] == 'd' || str[i] == 'i')
 		print_int(arg, arg_len, BASE_DECIMAL);
 	else if (str[i] == 'u')
 		print_u_int(arg, arg_len, BASE_DECIMAL);
@@ -31,35 +42,32 @@ void	check_conversion(char const *str, va_list arg, int i, int *arg_len)
 	else if (str[i] == 's')
 		print_str(arg, arg_len);
 }
-#include <stdio.h>
-int ft_printf(const char *conversion, ...)
+
+int	ft_printf(const char *conv, ...)
 {
 	int		i;
-
 	int		arg_len;
 	va_list	arg;
 
-	va_start (arg, conversion);
+	va_start(arg, conv);
 	i = 0;
 	arg_len = 0;
-	if(!conversion)
-		return (0);
-	while (conversion[i])
+	while (conv[i])
 	{
-		if(conversion[i] == '%' && check_exist(conversion[i + 1],"cspdiuxX%"))
+		if (conv[i] == '%' && if_exist(conv[i + 1], "cspdiuxX%"))
 		{
 			i++;
-			check_conversion(conversion, arg, i, &arg_len);	
+			check_conversion(conv, arg, i, &arg_len);
 		}
-		else if (conversion[i] == '%' && !(check_exist(conversion[i + 1],"cspdiuxX%")))
+		else if (conv[i] == '%' && !(if_exist(conv[i + 1], "cspdiuxX%")))
 		{
-			arg_len += write(1, &conversion[i + 1], 1);
+			arg_len += write(1, &conv[i + 1], 1);
 			i++;
 		}
 		else
-			arg_len += write(1, &conversion[i], 1);
+			arg_len += write(1, &conv[i], 1);
 		i++;
 	}
-	va_end(arg);
-	return(arg_len);
+	va_end (arg);
+	return (arg_len);
 }
