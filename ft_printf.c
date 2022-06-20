@@ -50,23 +50,21 @@ int	ft_printf(const char *conv, ...)
 	va_list	arg;
 
 	va_start(arg, conv);
-	i = 0;
+	i = -1;
 	arg_len = 0;
-	while (conv[i])
+	while (conv[++i])
 	{
-		if (conv[i] == '%' && if_exist(conv[i + 1], "cspdiuxX%"))
+		if (conv[i] == '%' && conv[i + 1] == '\0')
+			return (0);
+		else if (conv[i] == '%' && if_exist(conv[i + 1], "cspdiuxX%"))
 		{
 			i++;
 			check_conversion(conv, arg, i, &arg_len);
 		}
 		else if (conv[i] == '%' && !(if_exist(conv[i + 1], "cspdiuxX%")))
-		{
-			arg_len += write(1, &conv[i + 1], 1);
-			i++;
-		}
+			arg_len += write(1, &conv[i++], 1);
 		else
 			arg_len += write(1, &conv[i], 1);
-		i++;
 	}
 	va_end (arg);
 	return (arg_len);

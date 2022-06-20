@@ -2,18 +2,14 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define PARAMS1	"| %d |\n", -18
-/*#define PARAMS2 "| %%%% |\n"
-ç "| %% %% %% |\n"
-#define PARAMS4 "| %%  %%  %% |\n|"
-#define PARAMS5 "| %%   %%   %% |\n"
-#define PARAMS6 "|%%|"*/
+#define PARAMS	"%", -18
+
 int main()
 {
 	printf("ft_printf: \n");
-	ft_printf("%i\n", ft_printf(PARAMS1));
+	ft_printf("%i\n", ft_printf(PARAMS));
 	printf("printf: \n");
-	printf("%i\n", printf(PARAMS1));
+	printf("%i\n", printf(PARAMS));
 }
 
 
