@@ -6,7 +6,7 @@ void print_u_int(va_list arg, int *arg_len, const char *base)
 	unsigned int n;
 
 	n = va_arg(arg, unsigned int);
-	ft_putnbr_base(n, base, arg_len);
+	ft_putnbr_base_unsigned(n, base, arg_len);
 	
 }
 
@@ -31,5 +31,5 @@ void print_base(va_list arg, int *arg_len, const char *base)
 	unsigned long n;
 
 	n = va_arg(arg, unsigned long);
-	ft_putnbr_base(n, base, arg_len);
+	ft_putnbr_base_unsigned(n, base, arg_len);
 }
