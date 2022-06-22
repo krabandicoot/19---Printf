@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	if_exist(char c, char *letter)
 {
@@ -55,7 +55,7 @@ int	ft_printf(const char *conv, ...)
 	while (conv[++i])
 	{
 		if (conv[i] == '%' && conv[i + 1] == '\0')
-			return (0);
+			return (arg_len);
 		else if (conv[i] == '%' && if_exist(conv[i + 1], "cspdiuxX%"))
 		{
 			i++;

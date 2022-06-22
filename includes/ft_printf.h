@@ -19,8 +19,8 @@
 # include <limits.h>
 # include <unistd.h>
 
-# define BASE_HEXA_L		"0123456789abcdef"
-# define BASE_HEXA_U		"0123456789ABCDEF"
+# define BASE_HEXA_L	"0123456789abcdef"
+# define BASE_HEXA_U	"0123456789ABCDEF"
 # define BASE_DECIMAL	"0123456789"
 
 void		ft_putchar(char c, int *arg_len);
